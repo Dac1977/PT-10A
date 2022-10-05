@@ -7,6 +7,7 @@ function BinarioADecimal(num) {
 
 let sum = 0;
   for (let i = 0; i < num.length; i++) {
+    
     sum = sum + num[i] * (2 ** (num.length-1-i));
     // numero binario 1010 
     //        1 * 2**(3-0)
