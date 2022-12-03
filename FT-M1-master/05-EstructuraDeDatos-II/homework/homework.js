@@ -11,9 +11,90 @@ Implementar la clase LinkedList, definiendo los siguientes métodos:
   En caso de que la búsqueda no arroje resultados, search debe retornar null.
 */
 
-function LinkedList() {}
+// function LinkedList() {}
 
-function Node(value) {}
+class Node {
+  constructor(value){
+    this.value = value;
+    this.next = null;
+  }
+}
+  
+class LinkedList {
+  constructor(){
+    this.head = null;
+    this.len = 0;
+  }
+  add(data){
+    let nodo = new Node(data);
+    let current =  this.head;
+    if(!current){ 
+      this.head = nodo;
+      this.len++;
+      return nodo
+    }
+    while(current.next){ //mientras haya un next seguir recorriendo hasta llegar a null
+       current = current.next;
+       
+      
+    }
+    current.next = nodo;
+    this.len++;
+    return nodo;
+      
+    }
+    
+    remove(){
+      let current = this.head;
+      if(this.len === 0) return null;
+      if(this.len === 1){
+        let save = current.value;
+        this.head = null;
+        this.len--;
+        return save;
+      }
+        while(current.next.next){
+          current = current.next;
+        }
+        let save = current.next.value;
+        current.next = null;
+        this.len--;
+        return save;
+    }
+    search(dato){
+      if(this.head === null) return null;
+      let current = this.head;
+      while(current){
+        if(current.value === dato) return dato;
+        else if(typeof dato === "function"){
+          if(dato(current.value) === true){
+            return current.value;
+          }
+        }
+        current = current.next;
+        
+      }
+      return null;
+    };
+  
+}
+var lista = new LinkedList();
+    
+lista.add(3);
+lista.add(5);
+lista.add(6);
+lista.add(26);
+lista.add(21);
+console.log(lista);
+lista.remove();
+console.log(lista.search(26));
+console.log(lista);
+lista.add(62);
+lista.add(34);
+console.log(lista.search(3))
+console.log(lista);
+//function Node(value) {}
+
 
 /*
 Implementar la clase HashTable.
@@ -31,6 +112,32 @@ Ejemplo: supongamos que quiero guardar {instructora: 'Ani'} en la tabla. Primero
 */
 
 function HashTable() {}
+/* class HashTable{
+  constructor(){
+    this.numBuckets = 35;
+    this.Lockers = [];
+  }
+  hash(key){
+    let total = 0;
+    for(let i = 0; i < key.length; i++){
+      total += key.charCodeAt(i);
+      return total % this.numBuckets
+    }
+  }
+  set(key, value){
+    let locker = this.hash(key);
+    this.Lockers[locker][key] = value;
+  }
+  get(key){
+    let locker = this.hash(key);
+    return this.Lockers[locker][key];
+  }
+  hasKey(){
+    let checkKey = this.get(key);
+    if(checkKey) return true;
+    return false;
+  }
+  } */
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
